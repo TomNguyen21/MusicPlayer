@@ -1,16 +1,19 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import * as serviceWorker from "./serviceWorker";
-import reducer, { initialState } from "./reducer";
-import { DataLayer } from "./DataLayer";
+export const initialState = {
+  user: null,
+  playlists: [];
+  playing: false,
+  item: null,
+}
 
-ReactDOM.render(
-  <React.StrictMode>
-    <DataLayer initialState={initialState} reducer={reducer}>
-      <App />
-    </DataLayer>
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+const reducer = (state, action) => {
+  console.log(action);
+  // Action -> type, [payload]
+  switch(action.type) {
+    case 'SET_USER':
+      return {
+        ...state,
+        user: action.user
+      }
+  }
+}
+export default reducer;
