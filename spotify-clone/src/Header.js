@@ -1,11 +1,13 @@
 import React from 'react';
 import './Header.css';
+import SearchIcon from '@material-ui/icons/Search';
 
 function Header() {
   return (
     <div className="header">
       <div className="header_left">
-
+        <SearchIcon />
+        <input placeholder="Search for Artists, Songs, or Albums" type="text" />
       </div>
       <div className="header_right">
 
