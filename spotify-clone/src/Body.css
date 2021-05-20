@@ -30,3 +30,26 @@
 .body_infoText > p {
   font-size: 14px;
 }
+
+.body_songs {
+  margin: 20px -30px;
+}
+
+.body_icons {
+  display: flex;
+  align-items: center;
+}
+
+.body_icons > .MuiSvgIcon-root {
+  margin-right: 20px;
+}
+
+.body_shuffle {
+  font-size: 80px !important;
+  margin: 20px 0 20px 50px;
+}
+
+.body_shuffle:hover {
+  transition: 100ms transform ease-in;
+  transform: scale(1.08);
+}
