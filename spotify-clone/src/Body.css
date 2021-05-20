@@ -5,3 +5,22 @@
   padding: 30px;
   height: 100vh
 }
+
+.body_info {
+  display: flex;
+  align-items: flex-end;
+  padding: 10px;
+}
+
+.body_infoText {
+  flex: 1;
+}
+
+.body_infoText > h2 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.body_infoText > p {
+  font-size: 14px;
+}
