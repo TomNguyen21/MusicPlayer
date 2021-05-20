@@ -9,12 +9,51 @@ import SongRow from './SongRow';
 
 function Body({ spotify }) {
   const [{ discover_weekly }, dispatch] = useDataLayerValue();
+
+  const playPlaylist = (id) => {
+    spotify
+      .play({
+        context_uri: `spotify:playlist:37i9dQZEVXcFPOJBbuLXwA`,
+      })
+      .then((res) => {
+        spotify.getMyCurrentPlayingTrack().then((r) => {
+          dispatch({
+            type: "SET_ITEM",
+            item: r.item,
+          });
+          dispatch({
+            type: "SET_PLAYING",
+            playing: true,
+          });
+        });
+      });
+  };
+
+  const playSong = (id) => {
+    spotify
+      .play({
+        uris: [`spotify:track:${id}`],
+      })
+      .then((res) => {
+        spotify.getMyCurrentPlayingTrack().then((r) => {
+          dispatch({
+            type: "SET_ITEM",
+            item: r.item,
+          });
+          dispatch({
+            type: "SET_PLAYING",
+            playing: true,
+          });
+        });
+      });
+  };
+
   return (
     <div className="body">
         <Header spotify={spotify} />
 
         <div className="body_info">
-          <img src={discover_weekly?.images[0].url} alt="image for playlists" />
+          <img src={discover_weekly?.images[0].url} alt="" />
           <div className="body_infoText">
             <strong>PLAYLIST</strong>
             <h2>Discover Weekly</h2>
@@ -23,12 +62,12 @@ function Body({ spotify }) {
         </div>
         <div className="body_songs">
           <div className="body_icons">
-            <PlayCircleFilledIcon className="body_shuffle" />
+            <PlayCircleFilledIcon className="body_shuffle" onClick={playPlaylist} />
             <FavoriteIcon fontSize="large" />
             <MoreHorizIcon />
           </div>
           {discover_weekly?.tracks.items.map( (item) => (
-            <SongRow track={item.track} />
+            <SongRow playSong={playSong} track={item.track} />
           ))}
         </div>
     </div>
